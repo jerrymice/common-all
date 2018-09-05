@@ -11,7 +11,7 @@ import java.util.Properties;
 /**
  * @author tumingjian
  *  一个基于snowflake算法的ID生成器工具类,支持简单的多点部署配置.没有集群环境的检查功能.
- *  在多点部署时,workId与datacenterId需要你自己在集群中保证唯一.这个工具类没有任何检测手段.
+ *  在多点部署时,workId与datacenterId联合起来的值需要你自己在集群中保证唯一.这个工具类没有任何检测手段.
  */
 @Slf4j
 public class IDGeneratorUtils {
