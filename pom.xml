@@ -119,10 +119,7 @@
             <version>2.5.3</version>
             <configuration>
                 <autoVersionSubmodules>true</autoVersionSubmodules>
-                <checkModificationExclude>**\release-pom.xml</checkModificationExclude>
-                <useReleaseProfile>false</useReleaseProfile>
-                <GenerateReleasePoms>false</GenerateReleasePoms>
-                <ReleaseVersion>@{version}.RELEASE</ReleaseVersion>
+                <generateReleasePoms>false</generateReleasePoms>
             </configuration>
         </plugin>
             <plugin>
