@@ -122,6 +122,7 @@
             <configuration>
                 <autoVersionSubmodules>true</autoVersionSubmodules>
                 <checkModificationExclude>**\release-pom.xml</checkModificationExclude>
+                <useReleaseProfile>false</useReleaseProfile>
             </configuration>
         </plugin>
             <plugin>
