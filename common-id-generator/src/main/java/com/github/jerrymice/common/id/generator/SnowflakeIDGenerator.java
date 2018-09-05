@@ -2,6 +2,7 @@ package com.github.jerrymice.common.id.generator;
 
 
 import lombok.extern.slf4j.Slf4j;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +10,13 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author tumingjian
- * 说明:snowflake算法
+ * twitter snowflake算法
+ * 可以支持最大节点数为1024个节点,每个节点每毫秒可产生4096个趋势递增的Long值
+ * 算法优点:整体上按照时间自增排序，
+ * 并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，如果满节点部署每秒能够产生26万个ID左右
  */
 @Slf4j
-public class SnowflakeIdWorker{
-    // ==============================Fields===========================================
-    /**
-     * 开始时间截 (2018-01-01)
-     */
-    private final long start = 1514736000000L;
+public class SnowflakeIDGenerator implements IDGenerator {
 
     /**
      * 机器id所占的位数
@@ -78,6 +77,10 @@ public class SnowflakeIdWorker{
      * 毫秒内序列(0~4095)
      */
     private long sequence = 0L;
+    /**
+     * 开始时间的毫秒数,这个时间一旦在生产环境固定,便不能更改.否则会造成ID重复
+     */
+    private long startTimestamp;
 
     /**
      * 上次生成ID的时间截
@@ -90,16 +93,17 @@ public class SnowflakeIdWorker{
     /**
      * 批量生成ID的最大数量
      */
-    private final int MAX_BATCH_GENERATE_COUNT=100;
+    private final int MAX_BATCH_GENERATE_COUNT = 100;
 
     /**
-     *
-     * @param workerId     工作ID (0~31)
-     * @param datacenterId 数据中心ID (0~31)
-     * @param lastTimestamp 最后更新时间
-     * @param maxBackTimestamp 最大回退时间
+     * @param workerId         工作ID (0~31)
+     * @param datacenterId     数据中心ID (0~31)
+     * @param startTimestamp   要生成ID的开始时间
+     * @param lastTimestamp    生成ID的最后更新时间
+     * @param maxBackTimestamp 最大回退时间,可以理解为lastTimestamp
+     *                         与本地系统时间System.currentTime()的最大误差时,如果高于这个误差值,那么会抛出异常
      */
-    public SnowflakeIdWorker(long workerId, long datacenterId, long lastTimestamp, long maxBackTimestamp) {
+    public SnowflakeIDGenerator(long workerId, long datacenterId, long startTimestamp, long lastTimestamp, long maxBackTimestamp) {
         if (workerId > MAX_WORKER_ID || workerId < 0) {
             throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", MAX_WORKER_ID));
         }
@@ -108,18 +112,18 @@ public class SnowflakeIdWorker{
         }
         this.workerId = workerId;
         this.datacenterId = datacenterId;
-        this.lastTimestamp=lastTimestamp;
-        this.maxBackTimestamp=maxBackTimestamp;
+        this.startTimestamp = startTimestamp;
+        this.lastTimestamp = lastTimestamp;
+        this.maxBackTimestamp = maxBackTimestamp;
     }
-
-    // ==============================Methods==========================================
 
     /**
      * 获得下一个ID (该方法是线程安全的)
      *
      * @return SnowflakeId
      */
-    public synchronized long generateId() {
+    @Override
+    public synchronized Long id() {
         long timestamp = currentTimeMillis();
         //如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退.
         if (timestamp < lastTimestamp) {
@@ -143,7 +147,7 @@ public class SnowflakeIdWorker{
         lastTimestamp = timestamp;
 
         //移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - start) << timestampLeftShift)
+        return ((timestamp - startTimestamp) << timestampLeftShift)
                 | (datacenterId << datacenterIdShift)
                 | (workerId << workerIdShift)
                 | sequence;
@@ -151,6 +155,7 @@ public class SnowflakeIdWorker{
 
     /**
      * 时间回退处理
+     *
      * @param timestamp 时间
      * @return 返回一个时间
      */
@@ -161,17 +166,16 @@ public class SnowflakeIdWorker{
             String errorMessage = MessageFormat.format("Clock moved backwards. lasttime:{0},currenttime:{0} ,Refusing to generate id for {2} milliseconds", lastTimestamp, timestamp, backTimestamp);
             log.error(errorMessage);
             throw new RuntimeException(new TimeoutException(errorMessage));
-        } else{
+        } else {
             //如果回拔时间小于2秒.阻塞时间直到当前时间大于lastTimestamp
-            timestamp=tilNextMillis(lastTimestamp);
-            log.info(MessageFormat.format("Clock moved backwards,but fix bug,currentTime:{0},backTimestamp:{1}",timestamp,lastTimestamp));
+            timestamp = tilNextMillis(lastTimestamp);
+            log.info(MessageFormat.format("Clock moved backwards,but fix bug,currentTime:{0},backTimestamp:{1}", timestamp, lastTimestamp));
         }
         return timestamp;
     }
 
     /**
      * 阻塞到下一个毫秒，直到获得新的时间戳
-     *
      * @param lastTimestamp 上次生成ID的时间截
      * @return 当前时间戳
      */
@@ -196,14 +200,16 @@ public class SnowflakeIdWorker{
      * 批量生成ID.
      * @param count 要生成的数量
      * @return 返回一个size为count的数组
+     * @see IDGenerator
      */
-    public List<Long> batchGenerateId(int count){
-        if(count>MAX_BATCH_GENERATE_COUNT || count<=0){
-            throw new IndexOutOfBoundsException("批量生成ID的最大数量为100");
+    @Override
+    public List<Long> batchId(int count) {
+        if (count > MAX_BATCH_GENERATE_COUNT || count <= 0) {
+            throw new IndexOutOfBoundsException("batch id max count value 100");
         }
         ArrayList<Long> result = new ArrayList<>(count);
-        for(int i=0;i<count;i++){
-            result.add(generateId());
+        for (int i = 0; i < count; i++) {
+            result.add(id());
         }
         return result;
     }
