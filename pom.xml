@@ -129,8 +129,8 @@
                 </executions>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <outputDirectory>${basedir}</outputDirectory>
-                    <reportOutputDirectory>${basedir}</reportOutputDirectory>
+                    <outputDirectory>${basedir}/docs</outputDirectory>
+                    <reportOutputDirectory>${basedir}/docs</reportOutputDirectory>
                 </configuration>
             </plugin>
             <plugin>
