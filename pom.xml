@@ -121,6 +121,8 @@
                 <autoVersionSubmodules>true</autoVersionSubmodules>
                 <checkModificationExclude>**\release-pom.xml</checkModificationExclude>
                 <useReleaseProfile>false</useReleaseProfile>
+                <GenerateReleasePoms>false</GenerateReleasePoms>
+                <ReleaseVersion>@{version}.RELEASE</ReleaseVersion>
             </configuration>
         </plugin>
             <plugin>
