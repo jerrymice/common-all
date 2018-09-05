@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.jerrymice.common</groupId>
     <artifactId>common-all</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
     <packaging>pom</packaging>
     <modules>
         <module>common-id-generator</module>
@@ -77,7 +75,7 @@
         <url>http://github.com/jerrymice/common-all</url>
         <connection>scm:git:ssh://github.com/jerrymice/common-all</connection>
         <developerConnection>scm:git:ssh://git@github.com/jerrymice/common-all.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>common-all-0.0.2</tag>
     </scm>
     <distributionManagement>
         <snapshotRepository>
@@ -120,7 +118,6 @@
             <artifactId>maven-release-plugin</artifactId>
             <version>2.5.3</version>
             <configuration>
-                <preparationGoals>deploy</preparationGoals>
                 <autoVersionSubmodules>true</autoVersionSubmodules>
             </configuration>
         </plugin>
