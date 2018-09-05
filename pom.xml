@@ -4,7 +4,7 @@
 
     <groupId>com.github.jerrymice.common</groupId>
     <artifactId>common-all</artifactId>
-    <version>0.0.4.SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>common-id-generator</module>
@@ -120,6 +120,7 @@
             <configuration>
                 <autoVersionSubmodules>true</autoVersionSubmodules>
                 <generateReleasePoms>false</generateReleasePoms>
+                <useEditMode>false</useEditMode>
             </configuration>
         </plugin>
             <plugin>
