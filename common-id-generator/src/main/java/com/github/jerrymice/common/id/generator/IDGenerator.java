@@ -1,4 +1,4 @@
-package org.open.code.base.id.generator;
+package com.github.jerrymice.common.id.generator;
 
 import lombok.extern.slf4j.Slf4j;
 
