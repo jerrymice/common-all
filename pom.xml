@@ -5,7 +5,7 @@
 
     <groupId>com.github.jerrymice.common</groupId>
     <artifactId>common-all</artifactId>
-    <version>0.0.2.beta1</version>
+    <version>0.0.2.beta2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>this java commit utils project by parent</description>
