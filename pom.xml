@@ -112,7 +112,7 @@
     </dependencyManagement>
     <profiles>
         <profile>
-            <id>release</id>
+            <id>public-release</id>
             <build>
                 <plugins>
                     <plugin>
