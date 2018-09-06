@@ -46,6 +46,10 @@
         <module>common-id-generator</module>
     </modules>
     <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.slf4j.version>1.7.25</org.slf4j.version>
         <org.junit.version>4.12</org.junit.version>
         <org.lombok.version>1.18.2</org.lombok.version>
