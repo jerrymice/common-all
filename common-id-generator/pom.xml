@@ -8,6 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>common-id-generator</artifactId>
     <name>${project.groupId}:${project.artifactId}</name>
+    <url>https://github.com/jerrymice/common-all</url>
     <description>id generator :snowflake</description>
     <licenses>
         <license>
