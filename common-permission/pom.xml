@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>common-permission</artifactId>
-    <name>comm.github.jerrymice.common-entity</name>
+    <name>com.github.jerrymice.common-entity</name>
     <url>https://github.com/jerrymice/common-all</url>
     <description>
         this is java common util permission,base spring,support annotation Permission
