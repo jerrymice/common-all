@@ -136,6 +136,7 @@
                             <generateReleasePoms>false</generateReleasePoms>
                             <useReleaseProfile>true</useReleaseProfile>
                             <releaseProfiles>release</releaseProfiles>
+                            <goals>deploy</goals>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -147,6 +148,7 @@
                             <serverId>sonatype-release</serverId>
                             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            <goal>deploy</goal>
                         </configuration>
                     </plugin>
                 </plugins>
