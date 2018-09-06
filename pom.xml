@@ -44,6 +44,7 @@
     </distributionManagement>
     <modules>
         <module>common-id-generator</module>
+        <module>common-entity</module>
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

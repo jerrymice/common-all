@@ -77,7 +77,7 @@ public class IDGeneratorUtils {
 
     /**
      * 生成Long id
-     *
+     * @param count 要指量获取ID的个数
      * @return 返回Long类型的List
      */
     public static List<Long> batchId(int count) {
