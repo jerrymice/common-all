@@ -6,7 +6,7 @@
     <artifactId>common-all</artifactId>
     <version>0.0.2.beta5-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>${project.groupId}:${project.artifactId}</name>
+    <name>comm.github.jerrymice.common-all</name>
     <description>this java commit utils project by parent</description>
     <url>https://github.com/jerrymice/common-all</url>
     <licenses>
@@ -26,6 +26,22 @@
     <issueManagement>
         <url>https://github.com/jerrymice/common-all/issues</url>
     </issueManagement>
+    <scm>
+        <url>http://github.com/jerrymice/common-all</url>
+        <connection>scm:git:ssh://github.com/jerrymice/common-all</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jerrymice/common-all.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-release</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-release</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
     <modules>
         <module>common-id-generator</module>
     </modules>
@@ -90,23 +106,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <scm>
-        <url>http://github.com/jerrymice/common-all</url>
-        <connection>scm:git:ssh://github.com/jerrymice/common-all</connection>
-        <developerConnection>scm:git:ssh://git@github.com/jerrymice/common-all.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-release</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-release</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
     <profiles>
         <profile>
             <id>release</id>
