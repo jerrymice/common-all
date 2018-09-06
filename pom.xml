@@ -136,7 +136,6 @@
                             <generateReleasePoms>false</generateReleasePoms>
                             <useReleaseProfile>true</useReleaseProfile>
                             <releaseProfiles>release</releaseProfiles>
-                            <goals>deploy</goals>
                         </configuration>
                     </plugin>
                     <plugin>
