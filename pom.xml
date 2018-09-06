@@ -4,7 +4,7 @@
 
     <groupId>com.github.jerrymice.common</groupId>
     <artifactId>common-all</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>common-all-0.0.2.beta1</version>
     <packaging>pom</packaging>
     <modules>
         <module>common-id-generator</module>
@@ -75,7 +75,7 @@
         <url>http://github.com/jerrymice/common-all</url>
         <connection>scm:git:ssh://github.com/jerrymice/common-all</connection>
         <developerConnection>scm:git:ssh://git@github.com/jerrymice/common-all.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>common-all-common-all-0.0.2.beta1</tag>
     </scm>
     <distributionManagement>
         <snapshotRepository>
