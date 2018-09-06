@@ -18,10 +18,13 @@
     </licenses>
     <developers>
         <developer>
-            <name>tumingjian</name>
+            <name>jerrymice</name>
             <email>tumingjian@qq.com</email>
             <organization>Sonatype</organization>
             <organizationUrl>https://github.com/jerrymice</organizationUrl>
         </developer>
     </developers>
+    <issueManagement>
+        <url>https://github.com/jerrymice/common-all/issues</url>
+    </issueManagement>
 </project>
