@@ -120,7 +120,6 @@
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <generateReleasePoms>false</generateReleasePoms>
-                    <useEditMode>false</useEditMode>
                 </configuration>
             </plugin>
             <plugin>
