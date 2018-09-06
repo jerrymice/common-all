@@ -145,8 +145,8 @@
                         </executions>
                         <configuration>
                             <encoding>UTF-8</encoding>
-                            <outputDirectory>${basedir}/docs</outputDirectory>
-                            <reportOutputDirectory>${basedir}/docs</reportOutputDirectory>
+                            <outputDirectory>${basedir}/target/docs</outputDirectory>
+                            <reportOutputDirectory>${basedir}/target/docs</reportOutputDirectory>
                         </configuration>
                     </plugin>
                     <plugin>
