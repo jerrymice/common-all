@@ -133,7 +133,7 @@
                         <configuration>
                             <autoVersionSubmodules>true</autoVersionSubmodules>
                             <generateReleasePoms>false</generateReleasePoms>
-                            <useReleaseProfile>true</useReleaseProfile>
+                            <useReleaseProfile>false</useReleaseProfile>
                             <releaseProfiles>release</releaseProfiles>
                         </configuration>
                     </plugin>
