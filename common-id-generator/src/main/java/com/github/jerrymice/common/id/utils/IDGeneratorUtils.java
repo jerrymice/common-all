@@ -59,7 +59,7 @@ public class IDGeneratorUtils {
             }
             Long workId = Long.valueOf(properties.getOrDefault(WORK_ID_CONFIG_KEY, 0).toString());
             Long datacenterId = Long.valueOf(properties.getOrDefault(DATACENTER_ID_CONFIG_KEY, 0).toString());
-            ID_GENERATOR = new SnowflakeIDGenerator(startTimestamp, workId, datacenterId, System.currentTimeMillis(), 2000);
+            ID_GENERATOR = new SnowflakeIDGenerator(workId, datacenterId,startTimestamp,  System.currentTimeMillis(), 2000);
         } else {
             log.warn("IDGeneratorUtils use default config,workId:0,datacenterId:0.");
             ID_GENERATOR = new SnowflakeIDGenerator(START_TIMESTAMP, 0L, 0L, System.currentTimeMillis(), 2000);

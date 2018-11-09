@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.github.jerrymice.common</groupId>
         <artifactId>common-pom</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
     </parent>
     <artifactId>common-all</artifactId>
     <version>0.0.2.beta7-SNAPSHOT</version>
