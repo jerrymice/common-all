@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.github.jerrymice.common</groupId>
         <artifactId>common-pom</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
     </parent>
     <artifactId>common-all</artifactId>
     <version>0.0.2.beta7-SNAPSHOT</version>
@@ -35,16 +35,6 @@
         <developerConnection>scm:git:ssh://git@github.com/jerrymice/common-all.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-release</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-release</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
     <modules>
         <module>common-id-generator</module>
         <module>common-entity</module>
