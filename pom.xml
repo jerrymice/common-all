@@ -7,7 +7,7 @@
         <version>0.0.4</version>
     </parent>
     <artifactId>common-all</artifactId>
-    <version>0.0.2.beta7</version>
+    <version>0.0.2.beta8-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>comm.github.jerrymice.common-all</name>
     <description>this java commit utils project by parent</description>
@@ -33,7 +33,7 @@
         <url>http://github.com/jerrymice/common-all</url>
         <connection>scm:git:ssh://github.com/jerrymice/common-all</connection>
         <developerConnection>scm:git:ssh://git@github.com/jerrymice/common-all.git</developerConnection>
-        <tag>artifactId.0.0.2.beta7</tag>
+        <tag>HEAD</tag>
     </scm>
     <modules>
         <module>common-id-generator</module>
