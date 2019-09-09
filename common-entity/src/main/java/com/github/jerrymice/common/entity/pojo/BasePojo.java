@@ -1,25 +1,35 @@
 package com.github.jerrymice.common.entity.pojo;
 
 import java.sql.Timestamp;
+
 /**
  * @author tumingjian
  * 数据据实体的基类抽象接口
  */
+@Deprecated
 public interface BasePojo extends DataModel {
 
-	public Timestamp getCreatetime();
 
-	public void setCreatetime(Timestamp createtime);
+    public Timestamp getCreatetime();
 
-	public String getCreater();
+    public void setCreatetime(Timestamp createtime);
 
-	public void setCreater(String creater);
+    default String getCreater(){
+        return null;
+    }
 
-	public Timestamp getEditetime();
+    default void setCreater(String creater){
+    }
 
-	public void setEditetime(Timestamp editetime);
+    default Timestamp getEditetime(){
+        return null;
+    }
 
-	public String getOperator();
+    default void setEditetime(Timestamp editetime){
 
-	public void setOperator(String operator);
+    }
+
+    public String getOperator();
+
+    public void setOperator(String operator);
 }

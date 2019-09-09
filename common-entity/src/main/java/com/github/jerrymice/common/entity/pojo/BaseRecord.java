@@ -1,14 +1,13 @@
 package com.github.jerrymice.common.entity.pojo;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * @author tumingjian
- * 数据据实体的基类抽象接口
+ * 创建时间: 2019-09-08 12:44
+ * 功能说明:
  */
-@Deprecated
-public interface DataModel extends Serializable {
+public interface BaseRecord {
     default String getCreator(){
         return null;
     }
@@ -24,4 +23,12 @@ public interface DataModel extends Serializable {
     default void setUpdatetime(Timestamp updatetime){
 
     }
+    Timestamp getCreatetime();
+
+    void setCreatetime(Timestamp createtime);
+
+
+    String getOperator();
+
+    void setOperator(String operator);
 }
