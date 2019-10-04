@@ -16,7 +16,7 @@ public class ResultInfo<T> implements Result<T> {
     @ApiField(comment = "错误信息", jdbcType = "string", length = 128)
     @Expose()
     protected String message;
-    @ApiField(comment = "返回请求的业务实体", jdbcType = "OBJECT")
+    @ApiField(comment = "返回请求的业务实体", jdbcType = "object")
     @Expose()
     protected T body;
 

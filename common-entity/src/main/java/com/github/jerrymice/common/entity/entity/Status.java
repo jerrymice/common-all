@@ -33,8 +33,8 @@ public interface Status extends Serializable {
 
     /**
      * 创建一个新的
-     * @param code
-     * @param message
+     * @param code  相关错误代码
+     * @param message 相关错误信息
      * @return
      */
     static Status wrapped(String code, String message){
