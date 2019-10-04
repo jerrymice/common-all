@@ -1,18 +1,16 @@
 package com.github.jerrymice.common.entity.entity;
 
 import com.github.jerrymice.common.entity.annotation.ApiField;
+import com.github.jerrymice.common.entity.code.GlobalErrorCode;
 import com.google.gson.annotations.Expose;
 
 /**
  * @author tumingjian
  * 基础接口Result的默认实现,作为一般方法或是controller的最终返回值
- * @see Response
+ * @see Body
  */
-public class ResultInfo<T> extends ResponseImpl<T> implements Result {
-    @ApiField(comment = "执行结果返回true或false", jdbcType = "boolean")
-    @Expose()
-    protected boolean success;
-    @ApiField(comment = "返回错误码,只有出错时才会有值", jdbcType = "int", length = 8)
+public class ResultInfo<T> implements Result<T> {
+    @ApiField(comment = "返回错误码,正常返回0000", jdbcType = "string", length = 4)
     @Expose()
     protected String code;
     @ApiField(comment = "错误信息", jdbcType = "string", length = 128)
@@ -20,41 +18,58 @@ public class ResultInfo<T> extends ResponseImpl<T> implements Result {
     protected String message;
     @ApiField(comment = "返回请求的业务实体", jdbcType = "OBJECT")
     @Expose()
-    protected T object;
+    protected T body;
 
     public ResultInfo() {
     }
-
-    public ResultInfo(boolean isSuccess) {
-        this.success = isSuccess;
+    public ResultInfo(boolean success) {
+        if(success){
+                this.code= GlobalErrorCode.REQUEST_SUCCESS.getCode();
+                this.message= GlobalErrorCode.REQUEST_SUCCESS.getMessage();
+        }
     }
 
-    @Override
-    public boolean isSuccess() {
-        return success;
+    public ResultInfo(String code, String message) {
+        this.code = code;
+        this.message = message;
     }
 
-    public ResultInfo<T> setSuccess(boolean success) {
-        this.success = success;
-        return this;
+    public ResultInfo(Status status) {
+        this.code = status.getCode();
+        this.message=status.getMessage();
+    }
+    public ResultInfo(T body) {
+        this(GlobalErrorCode.REQUEST_SUCCESS);
+        this.body = body;
     }
 
-    @Override
     public ResultInfo<T> setCode(String code) {
         this.code = code;
         return this;
     }
 
-    @Override
     public ResultInfo<T> setMessage(String message) {
         this.message = message;
         return this;
     }
 
-    @Override
-    public ResultInfo<T> setObject(T object) {
-        this.object = object;
+    public ResultInfo<T> setBody(T body) {
+        this.body = body;
         return this;
     }
 
+    @Override
+    public T getBody() {
+        return this.body;
+    }
+
+    @Override
+    public String getCode() {
+        return this.code;
+    }
+
+    @Override
+    public String getMessage() {
+        return this.message;
+    }
 }

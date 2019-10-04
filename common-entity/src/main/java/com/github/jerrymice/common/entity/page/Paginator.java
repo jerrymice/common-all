@@ -11,6 +11,7 @@ import java.util.List;
  *
  * @author zhoudengwang
  */
+@Deprecated
 public class Paginator<E> {
     /**
      * 上一页

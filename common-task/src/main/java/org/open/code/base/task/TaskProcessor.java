@@ -1,7 +1,7 @@
 package org.open.code.base.task;
 
 
-import com.github.jerrymice.common.entity.code.ErrorCode;
+import com.github.jerrymice.common.entity.code.GlobalErrorCode;
 import com.github.jerrymice.common.entity.entity.ResultInfo;
 
 /**
@@ -16,7 +16,7 @@ public interface TaskProcessor {
      * @return  可以是任何对象
      */
     default Object taskNameIsNull() {
-        return new ResultInfo(false).setCode(ErrorCode.TASK_NAME_NOT_EMPTY.getCode()).setMessage(ErrorCode.TASK_NAME_NOT_EMPTY.getMessage());
+        return new ResultInfo(TaskErrorCode.TASK_NAME_NOT_EMPTY);
     }
 
     /**
@@ -26,7 +26,7 @@ public interface TaskProcessor {
      * @return 可以是任何对象
      */
     default Object verifyFailure(String value) {
-        return new ResultInfo(false).setCode(ErrorCode.TASK_USER_AUTH_ERROR.getCode()).setMessage(ErrorCode.TASK_USER_AUTH_ERROR.getMessage(value));
+        return new ResultInfo(TaskErrorCode.TASK_USER_AUTH_ERROR.format(value));
     }
 
     /**
@@ -37,7 +37,7 @@ public interface TaskProcessor {
      * @return 可以是任何对象
      */
     default Object notFoundTask(String taskName, String txid) {
-        return new ResultInfo(false).setCode(ErrorCode.TASK_NOT_FOUND.getCode()).setMessage(ErrorCode.TASK_NOT_FOUND.getMessage(taskName,txid));
+        return new ResultInfo(TaskErrorCode.TASK_NOT_FOUND.format(taskName,txid));
     }
 
     /**
@@ -49,7 +49,7 @@ public interface TaskProcessor {
      * @return 可以是任何对象
      */
     default Object taskExeError(String taskName, String txid, Exception e) {
-        return new ResultInfo(false).setCode(ErrorCode.TASK_EXECUTE_ERROR.getCode()).setMessage(ErrorCode.TASK_EXECUTE_ERROR.getMessage(taskName,txid, e.getMessage()));
+        return new ResultInfo(TaskErrorCode.TASK_EXECUTE_ERROR.format(taskName,txid,e.getLocalizedMessage()));
     }
 
     /**
@@ -60,7 +60,7 @@ public interface TaskProcessor {
      * @return 可以是任何对象
      */
     default Object taskExeSuccess(String taskName, String txid, Object result){
-        return new ResultInfo<>(true).setObject(result);
+        return new ResultInfo<>(true).setBody(result);
     }
 
 }

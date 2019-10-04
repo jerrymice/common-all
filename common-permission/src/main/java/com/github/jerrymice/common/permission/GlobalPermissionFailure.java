@@ -3,7 +3,7 @@ package com.github.jerrymice.common.permission;
 
 
 
-import com.github.jerrymice.common.entity.code.ErrorCode;
+import com.github.jerrymice.common.entity.code.GlobalErrorCode;
 import com.github.jerrymice.common.entity.entity.ResultInfo;
 import org.aspectj.lang.ProceedingJoinPoint;
 
@@ -21,6 +21,6 @@ public interface GlobalPermissionFailure {
      * @return
      */
     default Object permissionFailure(ProceedingJoinPoint joinPoint, Permission[] permissions) {
-        return new ResultInfo<>(false).setCode(ErrorCode.USER_NO_PERMISSIONS.getCode()).setMessage(ErrorCode.USER_NO_PERMISSIONS.getMessage());
+        return new ResultInfo<>(false).setCode(GlobalErrorCode.INVALID_USER_PERMISSIONS.getCode()).setMessage(GlobalErrorCode.INVALID_USER_PERMISSIONS.getMessage());
     }
 }

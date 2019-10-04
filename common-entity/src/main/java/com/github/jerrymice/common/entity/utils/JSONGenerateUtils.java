@@ -1,6 +1,7 @@
 package com.github.jerrymice.common.entity.utils;
 
 
+import com.github.jerrymice.common.entity.code.GlobalErrorCode;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.github.jerrymice.common.entity.entity.ResultInfo;
@@ -37,7 +38,7 @@ public class JSONGenerateUtils {
         Object o = classes.newInstance();
         data.add(o);
         paginator.setDatas(data);
-        ResultInfo resultInfo = new ResultInfo(true).setObject(paginator);
+        ResultInfo resultInfo = new ResultInfo(true).setBody(paginator);
         String s = gson.toJson(resultInfo);
         return s;
     }
@@ -50,7 +51,7 @@ public class JSONGenerateUtils {
      */
     public static String toJSONStringByObject(Class<?> classes) throws Exception {
         Object o = classes.newInstance();
-        ResultInfo resultInfo = new ResultInfo(true).setObject(o);
+        ResultInfo resultInfo = new ResultInfo(true).setBody(o);
         String s = gson.toJson(resultInfo);
         return s;
     }
@@ -65,7 +66,7 @@ public class JSONGenerateUtils {
         Object o = classes.newInstance();
         ArrayList<Object> objects = new ArrayList<Object>();
         objects.add(o);
-        ResultInfo resultInfo = new ResultInfo(true).setObject(objects);
+        ResultInfo resultInfo = new ResultInfo(true).setBody(objects);
         String s = gson.toJson(resultInfo);
         return s;
     }
@@ -96,7 +97,7 @@ public class JSONGenerateUtils {
      * @return 生成JSON字段串的返回值
      */
     public static String toFailSONString() {
-        String s = gson.toJson(new ResultInfo<String>(false).setMessage("错误消息"));
+        String s = gson.toJson(new ResultInfo<String>(GlobalErrorCode.INVALID_SYSTEM_USER));
         return s;
     }
 

@@ -1,14 +1,54 @@
 package com.github.jerrymice.common.entity.entity;
 
+import com.github.jerrymice.common.entity.code.GlobalErrorCode;
+
+import java.io.Serializable;
+
 /**
  * @author tumingjian
- * 创建时间: 2019-09-08 12:11
+ * 创建时间: 2019-09-29 10:29
  * 功能说明:
  */
-public interface Status {
+public interface Status extends Serializable {
+
     /**
-     * 请求是否成功.一般异常时返回true,有时候也可以当作某个条件判断的结果,或是某个方法的前置检查结果.
-     * @return 返回ture或false
+     * 获取错误码,一般情况下,只有在isSuccess()返回false时,才会有错误码返回
+     * @return 错误码
      */
-    boolean isSuccess();
+    String getCode();
+
+    /**
+     * 返回错误消息,一般情况下,只有在isSuccess()返回false时,才会有消息返回
+     * @return 返回结果附带的消息内容
+     */
+    String getMessage();
+
+    /**
+     * 状态是否成功
+     * @return
+     */
+    default boolean isSuccess(){
+        return GlobalErrorCode.REQUEST_SUCCESS.getCode().equals(getCode());
+    }
+
+    /**
+     * 创建一个新的
+     * @param code
+     * @param message
+     * @return
+     */
+    static Status wrapped(String code, String message){
+        return new Status() {
+            @Override
+            public String getCode() {
+                return code;
+            }
+
+            @Override
+            public String getMessage() {
+                return message;
+            }
+        };
+    }
+
 }

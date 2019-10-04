@@ -18,7 +18,7 @@ public interface TaskService {
         result.put("success", true);
         result.put("code", null);
         result.put("message", "测试任务执行成功");
-        result.put("object", null);
+        result.put("body", null);
         return result;
     }
 }

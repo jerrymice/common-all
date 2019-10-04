@@ -75,7 +75,7 @@ public class APIDocGenerateUtils {
         Object o = classes.newInstance();
         data.add(o);
         paginator.setDatas(data);
-        ResultInfo resultInfo = new ResultInfo(true).setObject(paginator);
+        ResultInfo resultInfo = new ResultInfo(true).setBody(paginator);
         String s = gson.toJson(resultInfo);
         String s1 = formatJsonComment(s);
         return s1;
@@ -89,7 +89,7 @@ public class APIDocGenerateUtils {
      */
     public static String toJSONStringByObject(Class<?> classes) throws Exception {
         Object o = classes.newInstance();
-        ResultInfo resultInfo = new ResultInfo(true).setObject(o);
+        ResultInfo resultInfo = new ResultInfo(true).setBody(o);
         String s = gson.toJson(resultInfo);
         String s1 = formatJsonComment(s);
         return s1;
@@ -105,7 +105,7 @@ public class APIDocGenerateUtils {
         Object o = classes.newInstance();
         ArrayList<Object> objects = new ArrayList<Object>();
         objects.add(o);
-        ResultInfo resultInfo = new ResultInfo(true).setObject(objects);
+        ResultInfo resultInfo = new ResultInfo(true).setBody(objects);
         String s = gson.toJson(resultInfo);
         String s1 = formatJsonComment(s);
         return s1;
