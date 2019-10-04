@@ -1,4 +1,4 @@
-package org.open.code.base.task;
+package com.github.jerrymice.common.task;
 
 
 import lombok.extern.slf4j.Slf4j;
