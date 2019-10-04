@@ -22,10 +22,10 @@ public interface Body<T> {
     default boolean isEmpty() {
         if (getBody() == null) {
             return true;
+        }else if (getBody() instanceof Collection) {
+            return ((Collection) getBody()).isEmpty();
+        }else{
+            return false;
         }
-        if (getBody() instanceof Collection && ((Collection) getBody()).isEmpty()) {
-            return true;
-        }
-        return false;
     }
 }
