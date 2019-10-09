@@ -14,6 +14,7 @@ import java.util.Properties;
  *  在多点部署时,workId与datacenterId联合起来的值需要你自己在配置的时候在集群中保证唯一性
  */
 @Slf4j
+@Deprecated
 public class IDGeneratorUtils {
     /**
      * 默认的生成ID的开始时间:2018-08-08

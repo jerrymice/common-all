@@ -23,6 +23,7 @@ import java.util.List;
  * 生成JSON数据,还会根据注解生成注释内容
  * 可以用ApiField或TableField注解为对象添加JSON字段注释内容
  */
+@Deprecated
 public class APIDocGenerateUtils {
     public static Gson gson = getDefaultGsonBuild().create();
 

@@ -14,6 +14,7 @@ import java.util.List;
  * @author tumingjian
  * 生成JSON数据,但不会生成注释内容
  */
+@Deprecated
 public class JSONGenerateUtils {
     public static Gson gson = getDefaultGsonBuild().create();
 

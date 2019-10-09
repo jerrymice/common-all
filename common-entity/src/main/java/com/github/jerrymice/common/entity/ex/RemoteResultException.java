@@ -3,7 +3,8 @@ package com.github.jerrymice.common.entity.ex;
 /**
  * @author tumingjian
  * 创建时间: 2019-10-04 11:44
- * 功能说明: 当远程@see Result的code码不为0000时,将直接抛出一个这个远程业务异常,由框架抛出.
+ * 功能说明: 当远程调用返回Result的code码不为0000时,将直接抛出一个这个远程业务异常,由框架抛出.
+ * 通常情况下不要抛出这个异常,这个异常仅仅是做为RPC调用失败时抛出.如果本地业务异常应该抛出ResultException
  */
 public class RemoteResultException extends ResultException {
     private String url;
@@ -47,5 +48,11 @@ public class RemoteResultException extends ResultException {
         this.url = url;
         this.request = request;
         this.response = response;
+    }
+    @Override
+    public String toString() {
+        String s = getClass().getName();
+        String message = getUrl()!=null?",url:"+getUrl()+","+getLocalizedMessage():getLocalizedMessage();
+        return (message != null) ? (s + ": " + "[" + getCode() + "]" + message) : (s + ": " + "[" + getCode() + "]");
     }
 }
