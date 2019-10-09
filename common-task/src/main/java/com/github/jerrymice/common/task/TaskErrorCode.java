@@ -10,6 +10,7 @@ import java.text.MessageFormat;
  * 功能说明:
  */
 public enum TaskErrorCode implements Status {
+
     /**
      * 定时任务:taskName或jobName定时任务名称不能为空
      */
@@ -25,7 +26,15 @@ public enum TaskErrorCode implements Status {
     /**
      * 定时任务:定时任务执行失败
      */
-    TASK_EXECUTE_ERROR("0104", "定时任务执行失败,taskName:{0},txid:{1},exeception message:{2}");
+    TASK_EXECUTE_ERROR("0104", "定时任务执行失败,taskName:{0},txid:{1},exeception message:{2}"),
+    /**
+     * 定时任务:任务必要参数不能为空
+     */
+    TASK_INVALID_ARGUMENTS("0105", "定时任务执行失败,taskName:{0},txid:{1},{2}参数不能为空"),
+    /**
+     * 定时任务:任务必要参数不能为空
+     */
+    TASK_EXECUTE_TIMEOUT("0106", "定时任务执行失败,taskName:{0},txid:{1},任务执行超时");
     /**
      * 全局错误码
      */

@@ -1,5 +1,6 @@
 package com.github.jerrymice.common.entity.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.jerrymice.common.entity.code.GlobalErrorCode;
 
 import java.io.Serializable;
@@ -27,6 +28,7 @@ public interface Status extends Serializable {
      * 状态是否成功
      * @return
      */
+    @JsonIgnore
     default boolean isSuccess(){
         return GlobalErrorCode.REQUEST_SUCCESS.getCode().equals(getCode());
     }

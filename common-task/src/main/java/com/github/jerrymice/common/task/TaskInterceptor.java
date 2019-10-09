@@ -9,6 +9,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -42,8 +44,16 @@ public class TaskInterceptor implements HandlerInterceptor {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String token = request.getParameter("token");
-        String txid = request.getParameter("txid");
-        Object o = taskProvider.executeTask(jobName, taskName, username, password, token, txid);
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        Map<String,Object> parameters=new HashMap<>();
+        for(Map.Entry<String,String[]> item:parameterMap.entrySet()){
+            if(item.getValue()!=null && item.getValue().length==1){
+                parameters.put(item.getKey(),item.getValue()[0]);
+            }else{
+                parameters.put(item.getKey(),item.getValue());
+            }
+        }
+        Object o = taskProvider.executeTask(jobName, taskName, username, password, token, parameters);
         ServletServerHttpResponse serverHttpResponse = new ServletServerHttpResponse(response);
         converter.write(o, MediaType.APPLICATION_JSON, serverHttpResponse);
         /**

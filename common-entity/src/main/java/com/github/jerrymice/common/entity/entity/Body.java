@@ -1,5 +1,7 @@
 package com.github.jerrymice.common.entity.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Collection;
 
 /**
@@ -19,6 +21,7 @@ public interface Body<T> {
      *
      * @return
      */
+    @JsonIgnore
     default boolean isEmpty() {
         if (getBody() == null) {
             return true;
