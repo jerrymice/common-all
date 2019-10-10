@@ -10,7 +10,11 @@ import java.text.MessageFormat;
  */
 public enum GlobalErrorCode implements Status {
     /**
-     * 未知错误
+     * 成功
+     */
+    REQUEST_SUCCESS_ONLY_CODE("0000", null),
+    /**
+     * 成功
      */
     REQUEST_SUCCESS("0000", "成功"),
     /**
@@ -18,17 +22,17 @@ public enum GlobalErrorCode implements Status {
      */
     INVALID_REQUEST_ARGUMENTS("0010", "非法的请求参数"),
     /**
-     * 系统运行时有未知异常抛出时会显示这个错误
+     * 用户未授权或授权已过期
      */
-    SYSTEM_UNKNOWN_ERROR("9999", "系统未知异常"),
+    INVALID_USER_SESSION("0011", "用户未授权或授权已过期"),
     /**
      * 用户未授权或授权已过期
      */
-    INVALID_SYSTEM_USER("0011", "用户未授权或授权已过期"),
+    INVALID_USER_LOGIN("0012", "登录失败,用户名或密码错误"),
     /**
      * 用户权限不足
      */
-    INVALID_USER_PERMISSIONS("0012", "用户权限不足"),
+    INVALID_USER_PERMISSIONS("0020", "用户权限不足"),
     /**
      * 系统忙,请稍后再试
      */
@@ -36,11 +40,15 @@ public enum GlobalErrorCode implements Status {
     /**
      * 内部服务错误
      */
-    SERVICE_ERROR("9997", "内部服务错误,内部服务调用失败或超时"),
+    SERVICE_ERROR("9997", "内部服务调用失败或超时"),
     /**
      * 非法的服务API
      */
-    INVALID_SERVICE_API("9996", "非法的服务API,找不到指定服务调用方法或URL");
+    INVALID_SERVICE_API("9996", "找不到指定服务调用方法或URL"),
+    /**
+     * 系统运行时有未知异常抛出时会显示这个错误
+     */
+    UNKNOWN_SYSTEM_ERROR("9999", "未知系统异常");
     /**
      * 全局错误码
      */
@@ -98,5 +106,16 @@ public enum GlobalErrorCode implements Status {
         return null;
     }
 
+    /**
+     * 使用相同的代码,但生成不同的消息
+     * @param message
+     * @return
+     */
+    public Status message(String message){
+        return Status.wrapped(this.code,message);
+    }
 
+    public Status getStatus(){
+        return Status.wrapped(this.code,this.message);
+    }
 }

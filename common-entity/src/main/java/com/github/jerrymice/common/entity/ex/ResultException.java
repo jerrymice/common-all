@@ -16,7 +16,7 @@ public class ResultException extends RuntimeException {
 
     public ResultException(String message) {
         super(message);
-        this.code = GlobalErrorCode.SYSTEM_UNKNOWN_ERROR.getCode();
+        this.code = GlobalErrorCode.UNKNOWN_SYSTEM_ERROR.getCode();
     }
 
     public ResultException(Status status) {
@@ -45,7 +45,7 @@ public class ResultException extends RuntimeException {
     }
     public ResultException(Throwable cause,String message) {
         super(message, cause);
-        this.code = GlobalErrorCode.SYSTEM_UNKNOWN_ERROR.getCode();
+        this.code = GlobalErrorCode.UNKNOWN_SYSTEM_ERROR.getCode();
     }
     public ResultException(ResultException cause) {
         super(cause);

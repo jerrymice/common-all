@@ -98,7 +98,7 @@ public class JSONGenerateUtils {
      * @return 生成JSON字段串的返回值
      */
     public static String toFailSONString() {
-        String s = gson.toJson(new ResultInfo<String>(GlobalErrorCode.INVALID_SYSTEM_USER));
+        String s = gson.toJson(new ResultInfo<String>(GlobalErrorCode.INVALID_USER_SESSION));
         return s;
     }
 
