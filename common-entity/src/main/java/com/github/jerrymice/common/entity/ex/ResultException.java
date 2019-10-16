@@ -6,7 +6,7 @@ import com.github.jerrymice.common.entity.entity.Status;
 /**
  * @author tumingjian
  * 创建时间: 2019-09-29 09:31
- * 功能说明: 一个本地业务异常,使用者可以自定义抛出这个异常.
+ * 功能说明: 一个本地业务异常,使用者可以自定义抛出这个异常.在Http Rest API 中,会统一将这类异常的HttpStatus变为500
  */
 public class ResultException extends RuntimeException {
     private String code ;

@@ -7,6 +7,7 @@ package com.github.jerrymice.common.entity.ex;
  * 通常情况下不要抛出这个异常,这个异常仅仅是做为RPC调用失败时抛出.如果本地业务异常应该抛出ResultException
  */
 public class RemoteResultException extends ResultException {
+    private int httpStatus;
     private String url;
     private String request;
     private String response;
@@ -43,8 +44,9 @@ public class RemoteResultException extends ResultException {
      * @param request 请求地址
      * @param response 响应内容
      */
-    public RemoteResultException(String code,String message,String url, String request, String response) {
+    public RemoteResultException(int httpStatus,String code,String message,String url, String request, String response) {
         super(code,message);
+        this.httpStatus=httpStatus;
         this.url = url;
         this.request = request;
         this.response = response;
@@ -54,5 +56,9 @@ public class RemoteResultException extends ResultException {
         String s = getClass().getName();
         String message = getUrl()!=null?",url:"+getUrl()+","+getLocalizedMessage():getLocalizedMessage();
         return (message != null) ? (s + ": " + "[" + getCode() + "]" + message) : (s + ": " + "[" + getCode() + "]");
+    }
+
+    public int getHttpStatus() {
+        return httpStatus;
     }
 }
